@@ -1,0 +1,191 @@
+/* universal css */
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    border: border-box;
+
+}
+
+ul{
+    list-style-type: none;
+}
+
+hr{
+   color: #0170B9;
+}
+
+/* navbar with logo and institute name */
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 110px;
+    background-color: white;
+    color: black;
+}
+
+.line1{
+    color: rgb(228, 237, 237);
+}
+
+.logo{
+    background-size: cover;
+    background-image: url("VJTI-Logo.jpg");
+    height: 87px;
+    width: 60px;
+}
+
+.head-logo{
+    padding: 15px;
+    height: 87px;
+    width: 60px;
+}
+
+.head-hindi{
+    padding: 15px;
+}
+
+.head-hindi-subtext{
+    text-align: center;
+    font-size: small;
+}
+
+.head-eng{
+    padding: 15px;
+}
+
+.head-eng-subtext{
+    text-align: center;
+    font-size: small;
+}
+
+/* dropdown navbar */
+
+.navbar2{
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-items{
+    text-align: center;
+}
+
+.navbar-items ul{
+    padding-left: 0px;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+.navbar-items ul li{
+    height: 65px;
+    font-size: medium;
+    background-color: white;
+    border: none;
+    /* padding: 10px; */
+    cursor: pointer;
+}
+
+.navbar-items .content ul{
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 100px;
+}
+
+.navbar-items .content ul li{
+    text-align: left;
+    font-size: smaller;
+    height: 100%;
+    width: 270px;
+    padding: 0px;
+}
+
+.navbar-items ul li a{
+    font-size: medium;
+    padding: 10px;
+    display: block;
+    color: #0170B9;
+    text-decoration: none;
+}
+
+.navbar-items ul li a:hover{
+    color: black;
+}
+
+.navbar-items ul li:hover .content{
+    display: block;
+    position: absolute;
+    color: black;
+}
+
+.navbar-items ul li:hover .content ul{
+    display: block;
+}
+
+/* main-body */
+
+.main-body{
+    display: flex;
+}
+
+/* body image */
+
+.img{
+    height: 450px;
+    width: 850px;
+    background: url("VJTImainimg.jpg");
+    background-size: cover;
+}
+
+.body-img{
+    height: 100%;
+    padding: 10%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    width: 80%;
+    border-right: 1px solid lightgrey;
+}
+
+/* quick links */
+
+.quicklinks{
+    border-left: 1px solid lightgray;
+    padding-left: 60px;
+}
+
+.quicklinks h2{
+    padding-bottom: 40px;
+}
+
+.links ul{
+    padding-left: 0px;
+    display: block;
+}
+
+.links ul li{
+    padding-bottom: 15px;
+}
+
+.links ul li a{
+    text-decoration: none;
+    color: #0170B9;
+}
+
+.quicklinks-text{
+    font-size: medium;
+    width: 50%
+}
+
+/* footer */
+
+.foot{
+    border-top: 2px solid lightgray;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

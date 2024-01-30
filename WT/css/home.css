@@ -31,7 +31,7 @@ hr{
 
 .logo{
     background-size: cover;
-    background-image: url("VJTI-Logo.jpg");
+    background-image: url("/home/veeransh/Desktop/Lab_work/WT/image/VJTI-Logo.png");
     height: 87px;
     width: 60px;
 }
@@ -134,7 +134,7 @@ hr{
 .img{
     height: 450px;
     width: 850px;
-    background: url("VJTI-mainpage_image.jpg");
+    background: url("/home/veeransh/Desktop/Lab_work/WT/image/VJTImainimg.jpg");
     background-size: cover;
 }
 

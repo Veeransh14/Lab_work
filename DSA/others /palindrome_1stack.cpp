@@ -7,7 +7,7 @@ bool isPalindrome(int num) {
     stack<int> digitStack;
     int originalNum = num;
 
-    // Push each digit of the number onto the stack
+    // Pushing each digit ont he Stack
     while (num > 0) {
         int digit = num % 10;
         digitStack.push(digit);
@@ -20,13 +20,13 @@ bool isPalindrome(int num) {
         digitStack.pop();
 
         if (digit != originalNum % 10) {
-            return false; // Not a palindrome
+            return false; 
         }
 
         originalNum /= 10;
     }
 
-    return true; // Palindrome
+    return true; 
 }
 
 int main() {

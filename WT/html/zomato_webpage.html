@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zomato - Find Restaurants Nearby</title>
+<link rel="stylesheet" href="/home/veeransh/Desktop/Lab_work/WT/css/zomato_webpage.css"> <!-- Link to your CSS file -->
+<style>
+  /* CSS to position the image */
+  #map-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  #map-img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 10%;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>Zomato</h1>
+    <nav>
+      <ul>
+        <li><a href="https://www.zomato.com/login">Login</a></li>
+        <li><a href="https://www.zomato.com/">Home</a></li>
+        <li><a href="https://www.zomato.com/contacts">Contact</a></li>
+        <li><a href="https://www.zomato.com/who-we-are">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="search">
+  <div class="container">
+    <h2>Find Restaurants Nearby</h2>
+    <form action="#" method="GET">
+      <input type="text" name="location" placeholder="Enter your location">
+      <button type="submit">Search</button>
+      <input type="text" name="location" placeholder="Enter Cuisine">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<!-- Add the image of the Indian map here -->
+
+<div
+    style = "display:flex; 
+    justify-content: center;
+     align-items: center; 
+     margin: 3px;">
+    
+     <img
+    src="/home/veeransh/Desktop/Lab_work/WT/image/india_map.jpg"
+    width="798"
+    height="900"
+    alt="Indian Map"
+    usemap="#India"
+  />
+    </div>
+    
+   
+
+  <map name="India">
+    <area shape="poly" coords="172,562,172,555,165,559,171,569,178,565,179,557,159,555,160,567,154,561,151,570" title="MUmbai" href="https://www.zomato.com/mumbai">
+    <area shape="poly" coords="288,716,295,718,302,710,296,708,287,705,280,712,282,720,291,724,302,722,309,716,301,702,291,698,282,701,276,706,273,713,275,719,284,727,299,729,310,723,309,709" title="Banglore" href="https://www.zomato.com/bangalore">    
+    <area shape="poly" coords="555,449,546,452,549,460,554,466,565,465,567,454,557,461,565,443,551,443,540,443,537,453,543,463,557,472,548,471,568,471,574,461,574,449,571,436,560,434,548,434" title="Kolkata" href="https://www.zomato.com/kolkata">
+    <area shape="poly" coords="273,273,280,293,285,284,274,283,267,292,273,301,282,304,291,297,294,287,293,269,286,274,301,279,267,279,260,291,265,300,277,309,293,305,297,294,259,281,305,287,285,264,313,282,320,283,334,283,327,285,341,282,332,293,338,290,321,292,315,291" title="Delhi" href="https://www.zomato.com/ncr">
+
+
+  </map>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var mapImg = document.getElementById('/home/veeransh/Desktop/Lab_work/WT/image/india_map.jpg');
+      mapImg.addEventListener('click', function(event) {
+        var x = event.offsetX;
+        var y = event.offsetY;
+        console.log('Clicked coordinates: (' + x + ', ' + y + ')');
+        
+      });
+    });
+    </script>
+
+</body>
+</html>

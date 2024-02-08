@@ -2,7 +2,7 @@ import threading
 import time
 import random
 
-BUFFER_SIZE = 5
+BUFFER_SIZE = 2
 mutex = threading.Semaphore(1)
 empty = threading.Semaphore(BUFFER_SIZE)
 full = threading.Semaphore(0)
@@ -37,3 +37,8 @@ consumer_thread.start()
 
 producer_thread.join()
 consumer_thread.join()
+
+# This program simulates between the producer-consumer problem using semaphores. 
+# It creates 2 threads, each for the producer and for the consumer.
+# the producer thread randomly and continuously generates random items and adds them to a shared buffer.
+# the consumer thread continuously consumes items from the buffer. Semaphores are used to control access to the buffer.

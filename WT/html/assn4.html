@@ -47,15 +47,31 @@
                     </div>
                     <div class="form-group">
                         <label for="cardNumber">Card Number</label>
-                        <input type="text" id="cardNumber" name="cardNumber" class="form-control" placeholder="Enter card number" required>
+                        <input type="text" id="cardNumber" name="cardNumber" class="form-control" placeholder="Enter card number" pattern="\d{16}" title="Please enter a 16-digit card number" required>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="expiry">Expiry Date</label>
-                        <input type="text" id="expiry" name="expiry" class="form-control" placeholder="MM/YY" required>
+                        <label for="expiry">Expiry</label>
+                        <input type="text" id="expiry" name="expiry" class="form-control" placeholder="MM/YY" pattern="\d{2}/\d{2}" title="Please enter a valid date (MM/YY)" maxlength="5" required>
                     </div>
+                
+                    <script>
+                        document.getElementById('expiry').addEventListener('input', function(e) {
+                            var input = e.target.value;
+                            var formattedInput = input.replace(/\D/g, ''); 
+                
+                            if (formattedInput.length > 2) {
+                                
+                                formattedInput = formattedInput.substr(0, 2) + '/' + formattedInput.substr(2, 2);
+                            }
+                
+                            e.target.value = formattedInput;
+                        });
+                    </script>
+
                     <div class="form-group">
-                        <label for="cvv">CVV</label>
-                        <input type="password" id="cvv" name="cvv" class="form-control" placeholder="Enter CVV" required>
+                        <label for="CVV">CVV</label>
+                        <input type="Password" id="CVV" name="CVV" class="form-control" placeholder="Enter CVV" pattern="\d{3}" title="Please enter a 3-digit CVV" required>
                     </div>
                     <div class="form-group">
                         <label for="amount">Amount</label>

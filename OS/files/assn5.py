@@ -22,9 +22,9 @@ class BankersAlgorithm:
                     break
             if not found:
                 if all(finish):
-                    return True  # Safe state found
+                    return True  
                 else:
-                    return False  # No safe state exists
+                    return False  
 
     def request_resources(self, process_id, request):
         if all(req <= need for req, need in zip(request, self.need[process_id])):
@@ -35,11 +35,11 @@ class BankersAlgorithm:
                     self.allocation[process_id] = new_allocation
                     self.need[process_id] = new_need
                     self.available = [a - r for a, r in zip(self.available, request)]
-                    return True  # Request granted
-        return False  # Request denied
+                    return True  
+        return False  
 
 
-# Example usage:
+
 if __name__ == "__main__":
     allocation = [[0, 1, 0], [2, 0, 0], [3, 0, 2], [2, 1, 1], [0, 0, 2]]
     max_demand = [[7, 5, 3], [3, 2, 2], [9, 0, 2], [2, 2, 2], [4, 3, 3]]
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         print("Initial state is safe.")
         print("Safe sequence:", banker.safe_sequence)
         process_id = 0
-        request = [0, 1, 0]  # Request resources for process 0
+        request = [0, 1, 0]  
         if banker.request_resources(process_id, request):
             print(f"Request for process {process_id} granted.")
             print("New allocation:", banker.allocation)
@@ -60,3 +60,28 @@ if __name__ == "__main__":
             print(f"Request for process {process_id} denied.")
     else:
         print("Initial state is not safe.")
+
+
+# bankers algo for a deadlock avoidance 
+# class constructor __init__ initializes algorithm with 3 main parameters   
+    # allocation - this shows current allocation of resources to for each proceses
+    # max demand - represents max demand of resources for each process
+    # available - it shows the available resources at that given point of time 
+# It calculates the 'need' matrix, which represents remaining resources needed by each process to complete execution
+
+# The safe state method check s whether the current state of the system is safe or not, bankers safety algo is used here 
+    # it has a finish vector to track whether a process has completed execution 
+    # it goes through each and every process and checks if its resources can be satisfied with the available resources or not
+    # iff a process can complete its execution, it goes through  the allocation of resources of that process and marks it finished 
+    # if process is not completed then and cannot be executed in the current state, the system is to be unsafe else it is said to be safe.
+    
+# request resource method requests for an additional resource from the process 
+# takes 2 parameters, process id and request 
+# initially it checks that the process from which an additional resource is asked has already maximum resources or not with the help of 'max_demand', basically checks it's availibility 
+# if both conditions are satisfied, it allocates a resource, and checks if the state is safe or unsafe.
+# if it is safe - request accepted (granted), if unsafe - request rejected (denied)
+
+
+ 
+  
+

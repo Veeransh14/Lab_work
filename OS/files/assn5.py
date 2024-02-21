@@ -41,9 +41,9 @@ class BankersAlgorithm:
 
 
 if __name__ == "__main__":
-    allocation = [[0, 1, 0], [2, 0, 0], [3, 0, 2], [2, 1, 1], [0, 0, 2]]
-    max_demand = [[7, 5, 3], [3, 2, 2], [9, 0, 2], [2, 2, 2], [4, 3, 3]]
-    available = [3, 3, 2]
+    allocation = [[1,1,1],[1,1,1],[1,1,1]]
+    max_demand = [[2,2,2], [2, 2, 2], [2,2,2]]
+    available = [0,0,0]
     
     banker = BankersAlgorithm(allocation, max_demand, available)
     if banker.is_safe_state():

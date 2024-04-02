@@ -45,7 +45,10 @@ public class ColorPaletteApplet extends JFrame implements ActionListener {
         } else if (ae.getSource() == blueButton) {
             color = Color.blue;
         } else if (ae.getSource() == customButton) {
-            color = JColorChooser.showDialog(this, "Choose a color", color);
+            Color selectedColor = JColorChooser.showDialog(this, "Choose a color", color);
+            if (selectedColor != null) {
+                color = selectedColor;
+            }
         }
 
         colorPanel.setBackground(color);

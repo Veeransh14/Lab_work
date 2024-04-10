@@ -6,6 +6,7 @@ import java.applet.*;
 /*<applet code="Cpdemo" width=500 height=600>
   </applet>
 */
+@SuppressWarnings("unused")
 public class Cpdemo extends Applet implements ActionListener
 {
   Panel p1,p2,p3;

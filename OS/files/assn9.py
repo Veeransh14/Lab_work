@@ -1,29 +1,27 @@
-# Share memory and IPC in python
+# Shared memory and IPC using python
 import multiprocessing
-import time 
+import time  
 
 def writer(shared_list):
     """Function to write data to the shared list."""
     for i in range(5):
         shared_list.append(i)
         print(f"Writer added: {i}")
-        
-        multiprocessing.time.sleep(1)
+        time.sleep(1)  
 
 def reader(shared_list):
     """Function to read data from the shared list."""
-    
     old_len = 0
     while old_len < 5:
         if len(shared_list) > old_len:
             print(f"Reader read: {shared_list[old_len]}")
             old_len += 1
-        multiprocessing.time.sleep(0.5)
+        time.sleep(0.5)  
 
 if __name__ == '__main__':
-    
     manager = multiprocessing.Manager()
-    shared_list = manager.list()
+    shared_list = manager.list()  
+    
     
     writer_process = multiprocessing.Process(target=writer, args=(shared_list,))
     reader_process = multiprocessing.Process(target=reader, args=(shared_list,))

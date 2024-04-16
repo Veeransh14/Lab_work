@@ -1,39 +1,48 @@
-# Shared memory and IPC using python
-import multiprocessing
-import time  
+# Page simulation in python 
+class MemoryManagementUnit:
+    def __init__(self, page_size, num_pages):
+        self.page_size = page_size
+        self.num_pages = num_pages
+        self.page_table = {i: None for i in range(num_pages)}  
 
-def writer(shared_list):
-    """Function to write data to the shared list."""
-    for i in range(5):
-        shared_list.append(i)
-        print(f"Writer added: {i}")
-        time.sleep(1)  
+    def allocate_page(self, page_number, frame_number):
+        """Allocate a page to a specific frame in memory."""
+        if self.page_table[page_number] is None:
+            self.page_table[page_number] = frame_number
+            print(f"Page {page_number} allocated to frame {frame_number}.")
+        else:
+            print(f"Page {page_number} is already allocated to frame {self.page_table[page_number]}.")
 
-def reader(shared_list):
-    """Function to read data from the shared list."""
-    old_len = 0
-    while old_len < 5:
-        if len(shared_list) > old_len:
-            print(f"Reader read: {shared_list[old_len]}")
-            old_len += 1
-        time.sleep(0.5)  
+    def translate_address(self, logical_address):
+        """Translate a logical address to a physical address."""
+        page_number = logical_address // self.page_size
+        offset = logical_address % self.page_size
+        
+        if page_number in self.page_table and self.page_table[page_number] is not None:
+            frame_number = self.page_table[page_number]
+            physical_address = frame_number * self.page_size + offset
+            print(f"Logical address {logical_address} -> Physical address {physical_address}")
+            return physical_address
+        else:
+            print(f"Page fault at page number {page_number}!")
+            return None
+
 
 if __name__ == '__main__':
-    manager = multiprocessing.Manager()
-    shared_list = manager.list()  
+    mmu = MemoryManagementUnit(page_size=256, num_pages=16)
     
     
-    writer_process = multiprocessing.Process(target=writer, args=(shared_list,))
-    reader_process = multiprocessing.Process(target=reader, args=(shared_list,))
+    mmu.allocate_page(0, 5)
+    mmu.allocate_page(1, 8)
     
-    writer_process.start()
-    reader_process.start()
     
-    writer_process.join()
-    reader_process.join()
+    mmu.translate_address(100)  
+    mmu.translate_address(300)  
+    mmu.translate_address(1024) 
 
 
 
-    # Manager and Shared List: We initiate a Manager() that allows creating a shared list. This list can be accessed and modified by different processes.
-    # Writer and Reader Functions: The writer function adds integers to the shared list, and the reader function reads these integers. To simulate asynchronous behavior, there are delays (sleep) added.
-    # Processes: Two separate processes are created for writing and reading. They operate on the same shared_list object managed by the Manager.
+    # MemoryManagementUnit Class: This class represents a simple MMU (Memory Management Unit).
+    # Page Table: A dictionary is used to simulate a page table, where keys are page numbers and values are frame numbers (None if not yet mapped).
+    # allocate_page Method: This method simulates allocating a page to a specific frame in memory.
+    # translate_address Method: This method converts a logical address to a physical address using the page table. It checks if the page exists and has been allocated. If not, a "page fault" is reported.

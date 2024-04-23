@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sample Form</title>
+    <meta charset="UTF-8">
+    <title>Online Survey</title>
 </head>
 <body>
-    <form action="MyServlet" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-        <input type="submit" value="Submit">
+    <h1>Online Survey</h1>
+    <form action="SurveyServlet" method="post">
+        <input type="hidden" name="questionNumber" value="1">
+        <p>Question 1: What is your favorite color?</p>
+        <input type="text" name="answer1">
+        <br>
+        <input type="submit" value="Next">
     </form>
 </body>
 </html>

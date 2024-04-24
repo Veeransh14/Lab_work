@@ -1,48 +1,44 @@
-# Page simulation in python 
-class MemoryManagementUnit:
-    def __init__(self, page_size, num_pages):
-        self.page_size = page_size
-        self.num_pages = num_pages
-        self.page_table = {i: None for i in range(num_pages)}  
+def paginate(items, n):
+    """Generate pages from items list with a specific number of items per page."""
+    for i in range(0, len(items), n):
+        yield items[i:i + n]
 
-    def allocate_page(self, page_number, frame_number):
-        """Allocate a page to a specific frame in memory."""
-        if self.page_table[page_number] is None:
-            self.page_table[page_number] = frame_number
-            print(f"Page {page_number} allocated to frame {frame_number}.")
-        else:
-            print(f"Page {page_number} is already allocated to frame {self.page_table[page_number]}.")
+def main():
+    # User input for total number of items and items per page
+    total_items = int(input("Enter the total number of items: "))
+    n = int(input("Enter the number of items per page: "))
 
-    def translate_address(self, logical_address):
-        """Translate a logical address to a physical address."""
-        page_number = logical_address // self.page_size
-        offset = logical_address % self.page_size
+    # Create a list of items based on the total number specified
+    items = list(range(1, total_items + 1))
+
+    # Create the pages
+    pages = list(paginate(items, n))
+    
+    cp = 0
+
+    while True:
+        # Display current page
+        print(f"Page {cp + 1}/{len(pages)}: {pages[cp]}")
         
-        if page_number in self.page_table and self.page_table[page_number] is not None:
-            frame_number = self.page_table[page_number]
-            physical_address = frame_number * self.page_size + offset
-            print(f"Logical address {logical_address} -> Physical address {physical_address}")
-            return physical_address
+        # User input for navigation
+        command= input("Enter 'n' to go to the next page, 'p' to go to the previous page, or 'q' to quit: ").strip().lower()
+
+        if command== 'n':
+            if cp < len(pages) - 1:
+                cp += 1
+            else:
+                print("You are on the last page.")
+        elif command== 'p':
+            if cp > 0:
+                cp -= 1
+            else:
+                print("You are on the first page.")
+        elif command== 'q':
+            print("Exiting the page.")
+            break
         else:
-            print(f"Page fault at page number {page_number}!")
-            return None
+            print("Invalid input. Please try again.")
 
+if __name__ == "__main__":
+    main()
 
-if __name__ == '__main__':
-    mmu = MemoryManagementUnit(page_size=256, num_pages=16)
-    
-    
-    mmu.allocate_page(0, 5)
-    mmu.allocate_page(1, 8)
-    
-    
-    mmu.translate_address(100)  
-    mmu.translate_address(300)  
-    mmu.translate_address(1024) 
-
-
-
-    # MemoryManagementUnit Class: This class represents a simple MMU (Memory Management Unit).
-    # Page Table: A dictionary is used to simulate a page table, where keys are page numbers and values are frame numbers (None if not yet mapped).
-    # allocate_page Method: This method simulates allocating a page to a specific frame in memory.
-    # translate_address Method: This method converts a logical address to a physical address using the page table. It checks if the page exists and has been allocated. If not, a "page fault" is reported.

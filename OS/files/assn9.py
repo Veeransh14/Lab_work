@@ -1,44 +1,35 @@
+from prettytable import PrettyTable
+
 def paginate(items, n):
     """Generate pages from items list with a specific number of items per page."""
     for i in range(0, len(items), n):
         yield items[i:i + n]
 
 def main():
-    # User input for total number of items and items per page
-    total_items = int(input("Enter the total number of items: "))
-    n = int(input("Enter the number of items per page: "))
+    memory = int(input("Enter the logical memory size in bytes: "))
+    page = int(input("Enter the page size in bytes: "))
+    physical_memory = int(input("Enter the physical memory size in bytes: "))
 
-    # Create a list of items based on the total number specified
+    total_items = memory // page
+    physical_pages = min(physical_memory // page, total_items)  
+
     items = list(range(1, total_items + 1))
+    pages = list(paginate(items, 1))
 
-    # Create the pages
-    pages = list(paginate(items, n))
-    
-    cp = 0
+    table = PrettyTable()
+    table.field_names = ["Page Number", "Page Content"]
 
-    while True:
-        # Display current page
-        print(f"Page {cp + 1}/{len(pages)}: {pages[cp]}")
-        
-        # User input for navigation
-        command= input("Enter 'n' to go to the next page, 'p' to go to the previous page, or 'q' to quit: ").strip().lower()
+    for i in range(physical_pages):
+        table.add_row([i + 1, pages[i]])
 
-        if command== 'n':
-            if cp < len(pages) - 1:
-                cp += 1
-            else:
-                print("You are on the last page.")
-        elif command== 'p':
-            if cp > 0:
-                cp -= 1
-            else:
-                print("You are on the first page.")
-        elif command== 'q':
-            print("Exiting the page.")
-            break
-        else:
-            print("Invalid input. Please try again.")
+    print(table)
 
 if __name__ == "__main__":
     main()
-
+    
+    
+    
+    # The script now takes three inputs: logical memory size, page size, and physical memory siz
+    # The number of total logical pages is computed by dividing the logical memory size by the page siz
+    # The number of physical pages that can be displayed is the minimum of the number of pages that the physical memory can hold and the total logical page
+    # A PrettyTable is used to output all the pages that fit within the physical memory in a single, well-formatted table at the end of the program, providing a clear overview of how the memory is divided and use

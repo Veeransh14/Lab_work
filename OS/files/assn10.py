@@ -8,11 +8,7 @@ class FileExplorerApp:
         self.root = root
         self.root.title("File Explorer")
 
-        # Set window icon
-        # Uncomment the next line after placing the correct path to your icon file
-        # self.root.iconbitmap("path_to_icon_file")
 
-        # Set window size and position
         window_width = 600
         window_height = 400
         screen_width = root.winfo_screenwidth()
@@ -21,49 +17,49 @@ class FileExplorerApp:
         y = (screen_height - window_height) // 2
         root.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
-        # Main frame
+        
         self.frame = tk.Frame(self.root, bg="white")
         self.frame.pack(fill=tk.BOTH, expand=True)
 
-        # File listbox
+        
         self.file_listbox = tk.Listbox(self.frame, selectmode=tk.SINGLE, bg="white", bd=0, font=("Algerian", 12))
         self.file_listbox.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(10, 0), pady=10)
         self.file_listbox.bind("<Double-Button-1>", self.open_directory)
 
-        # Scrollbar
+    
         self.scrollbar = tk.Scrollbar(self.frame, orient=tk.VERTICAL, command=self.file_listbox.yview)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y, padx=(0, 10), pady=10)
         self.file_listbox.config(yscrollcommand=self.scrollbar.set)
 
-        # Back button
+        
         self.back_button = tk.Button(self.root, text="Back", command=self.navigate_back, bg="#4CAF50", fg="white", font=("Algerian", 12), padx=10)
         self.back_button.pack(pady=5)
 
-        # Buttons frame
+        
         self.button_frame = tk.Frame(self.root, bg="white")
         self.button_frame.pack(pady=10)
 
-        # Create Directory button
+        
         self.create_dir_button = tk.Button(self.button_frame, text="Create Directory", command=self.create_directory, bg="#FF00FF", fg="white", font=("Algerian", 12), padx=10)
         self.create_dir_button.grid(row=0, column=0, padx=5)
 
-        # Delete Directory/File button
+        
         self.delete_dir_button = tk.Button(self.button_frame, text="Delete Directory/File", command=self.delete_item, bg="#FF00FF", fg="white", font=("Algerian", 12), padx=10)
         self.delete_dir_button.grid(row=0, column=1, padx=5)
 
-        # Create File button
+        
         self.create_file_button = tk.Button(self.button_frame, text="Create File", command=self.create_file, bg="#FF00FF", fg="white", font=("Algerian", 12), padx=10)
         self.create_file_button.grid(row=0, column=2, padx=5)
 
-        # Edit File button
+
         self.edit_file_button = tk.Button(self.button_frame, text="Edit File", command=self.edit_file, bg="#000000", fg="white", font=("Algerian", 12), padx=10)
         self.edit_file_button.grid(row=0, column=3, padx=5)
 
-        # Change Directory button
+        
         self.change_dir_button = tk.Button(self.button_frame, text="Change Directory", command=self.change_directory, bg="#FFFFFF", fg="white", font=("Algerian", 12), padx=10)
         self.change_dir_button.grid(row=0, column=4, padx=5)
 
-        # Stack to store directory history
+        
         self.directory_stack = []
         self.populate_listbox()
 

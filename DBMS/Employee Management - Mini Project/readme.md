@@ -1,5 +1,5 @@
-## Employee Management System
-#### DBMS-Mini-Project
+# Employee Management System
+## DBMS-Mini-Project
 
 ### Introduction
 The Employee Management System is designed to modernize the management of employee data within labour offices. This project leverages technologies like Angular, Spring Boot, and MySQL to automate administrative tasks, reduce human error, and enhance the overall productivity and efficiency of data management processes.

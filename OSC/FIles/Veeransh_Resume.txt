@@ -1,0 +1,13 @@
+Personal Information
+--------------------
+Name: Veeransh
+Email: vmshah_b22@ce.vjti.ac.in
+Phone: +91 7045655640
+
+Academic Details
+----------------
+Qualification: Pursuing Bachelors in Technology in the field of COmputer Engineering
+
+Skills
+------
+Python, ML, DL, AI, APP dev, C++, Flutter
